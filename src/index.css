@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #FEE4F9; /* snapgain-pink-light */
+  color: #7D4DFB; /* snapgain-purple */
+}
+
+@layer base {
+  :root {
+    --background: 338 92% 95%; /* snapgain-pink-light */
+    --foreground: 266 97% 64%; /* snapgain-purple */
+    --card: 0 0% 100%; /* white */
+    --card-foreground: 266 97% 64%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 266 97% 64%;
+    --primary: 266 97% 64%; /* snapgain-purple */
+    --primary-foreground: 0 0% 100%; /* white */
+    --secondary: 328 100% 62%; /* snapgain-pink */
+    --secondary-foreground: 0 0% 100%; /* white */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 84 100% 60%; /* snapgain-green-light */
+    --accent-foreground: 266 97% 64%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 266 97% 64% / 0.3; /* snapgain-purple com opacidade */
+    --input: 266 97% 64% / 0.3;
+    --ring: 266 97% 70%;
+    --radius: 0.75rem;
+
+    /* Semantic Aliases for general usage */
+    --bg-primary: hsl(var(--background));
+    --text-primary: hsl(var(--foreground));
+    --text-secondary: hsl(266 97% 40%); /* Darker purple for reading text */
+    --color-purple: hsl(var(--primary));
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #7D4DFB20; /* snapgain-purple com opacidade */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7D4DFB; /* snapgain-purple */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #99FF33; /* snapgain-green */
+}
+
+/* Safe area iPhone */
+:root {
+  --safe-bottom: env(safe-area-inset-bottom);
+  --safe-top: env(safe-area-inset-top);
+}
+
+body {
+  padding-bottom: var(--safe-bottom);
+}
+
+/* Ebook Reader Specific Styles */
+.ebook-content {
+  line-height: 1.8;
+  letter-spacing: -0.01em;
+  color: var(--text-secondary);
+}
+
+.ebook-content h2 {
+  color: var(--text-primary);
+  font-weight: 800;
+  font-size: 1.875rem;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  scroll-margin-top: 100px; /* Important for anchor scrolling */
+}
+
+.ebook-content h3 {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.ebook-content p {
+  margin-bottom: 1.5rem;
+}
+
+.ebook-content img {
+  border-radius: var(--radius);
+  margin: 2rem auto;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  max-w: 100%;
+  height: auto;
+}
+
+.ebook-content blockquote {
+  border-left: 4px solid var(--color-purple);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: hsl(266 97% 50%);
+  background: rgba(125, 77, 251, 0.05);
+  padding: 1.5rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.ebook-content ul, .ebook-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.ebook-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 420px) {
+  h1 {
+    letter-spacing: -0.02em;
+  }
+}
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.08);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(155,124,255,0.9);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #A6FF4D;
+}
