@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Read — From Cashback to Flights | SnapGain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="/config.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold: #c9a830; --gold-dark: #8b6914; --gold-deep: #5a4010;
+    --cream: #fffdf8; --cream-2: #f5f0e8; --dark: #1a1a1a; --mid: #555;
+    --sidebar-w: 280px; --header-h: 56px;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans:  'Inter', system-ui, sans-serif;
+    --border: rgba(201,168,48,0.2);
+  }
+  body { font-family: var(--font-sans); background: var(--cream); color: var(--dark); margin: 0; overflow: hidden; height: 100vh; }
+
+  /* ── Header ─────────────────────────────────── */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; height: var(--header-h);
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border); z-index: 100;
+    display: flex; align-items: center; padding: 0 1.25rem; gap: 1rem;
+  }
+  .h-logo { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 900; white-space: nowrap; }
+  .h-logo span { color: var(--gold); }
+  .h-title { font-size: 0.82rem; color: var(--mid); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .btn-menu { display: none; background: none; border: 1px solid var(--border); border-radius: 8px; padding: 0.4rem 0.7rem; cursor: pointer; font-size: 1.1rem; }
+  .h-user { display: flex; align-items: center; gap: 0.75rem; margin-left: auto; }
+  .h-user-email { font-size: 0.78rem; color: var(--mid); max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .btn-signout { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 0.35rem 0.85rem; font-size: 0.78rem; cursor: pointer; font-family: var(--font-sans); color: var(--mid); transition: all 0.2s; }
+  .btn-signout:hover { border-color: var(--gold); color: var(--gold-dark); }
+
+  /* ── Layout ──────────────────────────────────── */
+  .layout { display: flex; margin-top: var(--header-h); height: calc(100vh - var(--header-h)); }
+
+  /* ── Sidebar ─────────────────────────────────── */
+  .sidebar {
+    width: var(--sidebar-w); min-width: var(--sidebar-w);
+    background: #fff; border-right: 1px solid var(--border);
+    overflow-y: auto; padding: 1.25rem 0;
+    transition: transform 0.3s;
+  }
+  .sidebar-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); padding: 0 1.25rem 0.75rem; }
+  .ch-item {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.75rem 1.25rem; cursor: pointer; transition: background 0.15s;
+    border-left: 3px solid transparent; text-decoration: none;
+  }
+  .ch-item:hover { background: var(--cream); }
+  .ch-item.active { background: var(--cream-2); border-left-color: var(--gold); }
+  .ch-item.locked { opacity: 0.45; cursor: not-allowed; }
+  .ch-badge { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; background: var(--cream-2); display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; color: var(--gold-dark); }
+  .ch-item.active .ch-badge { background: var(--gold); color: #fff; }
+  .ch-info { overflow: hidden; }
+  .ch-part { font-size: 0.67rem; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+  .ch-name { font-size: 0.82rem; font-weight: 600; color: var(--dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ch-lock { margin-left: auto; font-size: 0.75rem; }
+
+  /* ── Content ─────────────────────────────────── */
+  .content { flex: 1; overflow-y: auto; padding: clamp(1.5rem, 4vw, 3rem) clamp(1.5rem, 5vw, 4rem); }
+  .content-inner { max-width: 780px; margin: 0 auto; }
+
+  /* ── Loading / Gates ──────────────────────────── */
+  .gate {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 60vh; text-align: center; gap: 1rem;
+  }
+  .gate-icon { font-size: 3rem; }
+  .gate h2 { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 900; }
+  .gate p { color: var(--mid); max-width: 400px; line-height: 1.7; }
+  .btn-gate {
+    background: var(--gold); color: #fff; font-weight: 700; font-size: 0.95rem;
+    padding: 0.85rem 2rem; border-radius: 10px; border: none; cursor: pointer;
+    text-decoration: none; display: inline-block; transition: background 0.2s;
+  }
+  .btn-gate:hover { background: var(--gold-dark); }
+  .spinner { width: 36px; height: 36px; border: 4px solid rgba(201,168,48,0.2); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Progress bar ────────────────────────────── */
+  .progress-bar { position: fixed; top: var(--header-h); left: 0; right: 0; height: 3px; background: var(--cream-2); z-index: 99; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold-deep), var(--gold)); width: 0%; transition: width 0.3s; }
+
+  /* ── Chapter nav ──────────────────────────────── */
+  .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .btn-nav { display: flex; align-items: center; gap: 0.5rem; background: none; border: 1px solid var(--border); border-radius: 10px; padding: 0.65rem 1.25rem; font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: var(--font-sans); color: var(--dark); transition: all 0.2s; }
+  .btn-nav:hover { border-color: var(--gold); color: var(--gold-dark); }
+  .btn-nav:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  /* ── Mobile overlay ──────────────────────────── */
+  .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 49; }
+
+  /* ── Responsive ──────────────────────────────── */
+  @media (max-width: 700px) {
+    .sidebar {
+      position: fixed; left: 0; top: var(--header-h); bottom: 0;
+      z-index: 50; transform: translateX(-100%);
+    }
+    .sidebar.open { transform: translateX(0); }
+    .sidebar-overlay.open { display: block; }
+    .btn-menu { display: flex; }
+    .h-user-email { display: none; }
+    .content { padding: 1.5rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+
+<!-- Header -->
+<header>
+  <button class="btn-menu" onclick="toggleSidebar()" aria-label="Toggle menu">☰</button>
+  <div class="h-logo">Snap<span>Gain</span></div>
+  <div class="h-title" id="h-title">From Cashback to Flights</div>
+  <div class="h-user">
+    <span class="h-user-email" id="h-email"></span>
+    <button class="btn-signout" onclick="signOut()">Sign out</button>
+  </div>
+</header>
+
+<!-- Sidebar overlay (mobile) -->
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+<div class="layout">
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-title">Contents</div>
+    <div id="chapter-list"></div>
+  </nav>
+
+  <!-- Main content -->
+  <main class="content" id="main-content" onscroll="updateProgress()">
+    <div class="content-inner">
+      <div class="gate" id="loading-gate">
+        <div class="spinner"></div>
+        <p>Loading your ebook…</p>
+      </div>
+      <div id="chapter-content" style="display:none;"></div>
+      <div class="ch-nav" id="ch-nav" style="display:none;">
+        <button class="btn-nav" id="btn-prev" onclick="navigate(-1)">← Previous</button>
+        <button class="btn-nav" id="btn-next" onclick="navigate(1)">Next →</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+const { createClient } = supabase;
+const sb = createClient(SUPABASE_URL, SUPABASE_ANON);
+
+const CHAPTERS_META = [
+  { number: 1, part: 'Part I',   title: 'Introduction & Overview' },
+  { number: 2, part: 'Part II',  title: 'Cashback Programmes' },
+  { number: 3, part: 'Part III', title: 'Cashback Deep Dive' },
+  { number: 4, part: 'Part IV',  title: 'Air Miles Programmes' },
+  { number: 5, part: 'Part V',   title: 'Tested Strategies' },
+  { number: 6, part: 'Part VI',  title: 'Supermarket & Card Strategies' },
+  { number: 7, part: 'Part VII', title: 'Apps & Credit Cards' },
+  { number: 8, part: 'Part VIII','title': 'International Transfers' },
+];
+
+let currentChapter = 1;
+let hasAccess = false;
+let session = null;
+let chaptersCache = {};
+
+// ── Init ───────────────────────────────────────────────────
+async function init() {
+  const { data } = await sb.auth.getSession();
+  session = data.session;
+
+  if (!session) {
+    showGate('auth');
+    return;
+  }
+
+  document.getElementById('h-email').textContent = session.user.email;
+
+  // Verify purchase access
+  try {
+    const res = await fetch(`${SUPABASE_URL}/functions/v1/verify-access`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON,
+        'Authorization': `Bearer ${session.access_token}`
+      },
+      body: JSON.stringify({ product_id: PRODUCT_ID })
+    });
+    const data = await res.json();
+    hasAccess = data.has_access === true;
+  } catch (e) { hasAccess = false; }
+
+  if (!hasAccess) {
+    showGate('purchase');
+    return;
+  }
+
+  buildSidebar();
+
+  // Load chapter from URL hash or default to 1
+  const hash = parseInt(window.location.hash.replace('#ch', '')) || 1;
+  await loadChapter(hash);
+}
+
+// ── Build Sidebar ──────────────────────────────────────────
+function buildSidebar() {
+  const list = document.getElementById('chapter-list');
+  list.innerHTML = CHAPTERS_META.map(ch => `
+    <div class="ch-item ${ch.number === currentChapter ? 'active' : ''}" 
+         id="ch-item-${ch.number}" onclick="loadChapter(${ch.number})">
+      <div class="ch-badge">${ch.number}</div>
+      <div class="ch-info">
+        <div class="ch-part">${ch.part}</div>
+        <div class="ch-name">${ch.title}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── Load Chapter ───────────────────────────────────────────
+async function loadChapter(num) {
+  currentChapter = num;
+  window.location.hash = `ch${num}`;
+  document.getElementById('main-content').scrollTop = 0;
+
+  // Update sidebar active state
+  document.querySelectorAll('.ch-item').forEach(el => el.classList.remove('active'));
+  const activeItem = document.getElementById(`ch-item-${num}`);
+  if (activeItem) {
+    activeItem.classList.add('active');
+    activeItem.scrollIntoView({ block: 'nearest' });
+  }
+
+  // Update header title
+  const meta = CHAPTERS_META.find(c => c.number === num);
+  if (meta) document.getElementById('h-title').textContent = meta.title;
+
+  // Show loading
+  document.getElementById('chapter-content').style.display = 'none';
+  document.getElementById('ch-nav').style.display = 'none';
+  document.getElementById('loading-gate').style.display = 'flex';
+
+  // From cache or fetch
+  if (!chaptersCache[num]) {
+    try {
+      const res = await fetch(
+        `${SUPABASE_URL}/functions/v1/get-chapter-watermarked?product_id=${PRODUCT_ID}&chapter_number=${num}&locale=en`,
+        { headers: { 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${session.access_token}` } }
+      );
+      const data = await res.json();
+      if (data.html_content) {
+        chaptersCache[num] = data.html_content;
+      } else {
+        // Fallback: direct DB read
+        const { data: ch } = await sb
+          .from('chapters')
+          .select('html_content')
+          .eq('product_id', PRODUCT_ID)
+          .eq('chapter_number', num)
+          .eq('locale', 'en')
+          .single();
+        chaptersCache[num] = ch?.html_content || '<p>Chapter content loading…</p>';
+      }
+    } catch (e) {
+      chaptersCache[num] = '<p style="color:#c00;">Could not load chapter. Please refresh.</p>';
+    }
+  }
+
+  // Render
+  document.getElementById('loading-gate').style.display = 'none';
+  document.getElementById('chapter-content').innerHTML = chaptersCache[num];
+  document.getElementById('chapter-content').style.display = 'block';
+
+  // Nav buttons
+  document.getElementById('ch-nav').style.display = 'flex';
+  document.getElementById('btn-prev').disabled = (num <= 1);
+  document.getElementById('btn-next').disabled = (num >= CHAPTERS_META.length);
+
+  // Log progress
+  logAccess(num);
+
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+}
+
+// ── Navigate ───────────────────────────────────────────────
+function navigate(dir) {
+  const next = currentChapter + dir;
+  if (next >= 1 && next <= CHAPTERS_META.length) loadChapter(next);
+}
+
+// ── Progress Bar ───────────────────────────────────────────
+function updateProgress() {
+  const el = document.getElementById('main-content');
+  const pct = (el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100;
+  document.getElementById('progress-fill').style.width = `${Math.min(100, pct)}%`;
+}
+
+// ── Log Chapter Access ─────────────────────────────────────
+async function logAccess(num) {
+  try {
+    await fetch(`${SUPABASE_URL}/functions/v1/log-chapter-access`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON,
+        'Authorization': `Bearer ${session.access_token}`
+      },
+      body: JSON.stringify({ product_id: PRODUCT_ID, chapter_number: num })
+    });
+  } catch (e) { /* silent */ }
+}
+
+// ── Gates ──────────────────────────────────────────────────
+function showGate(type) {
+  document.getElementById('loading-gate').innerHTML = type === 'auth' ? `
+    <div class="gate">
+      <div class="gate-icon">🔐</div>
+      <h2>Sign in to Read</h2>
+      <p>You need to sign in to access the ebook. If you've already purchased, sign in with the email you used at checkout.</p>
+      <a href="/" class="btn-gate">Sign In</a>
+    </div>
+  ` : `
+    <div class="gate">
+      <div class="gate-icon">✈</div>
+      <h2>Get Full Access</h2>
+      <p>Purchase <strong>From Cashback to Flights</strong> to unlock all 8 chapters and start saving on flights home.</p>
+      <a href="/#buy-section" class="btn-gate">Get the Ebook — £30</a>
+    </div>
+  `;
+}
+
+// ── Mobile Sidebar ─────────────────────────────────────────
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebar-overlay').classList.toggle('open');
+}
+
+// ── Sign Out ───────────────────────────────────────────────
+async function signOut() {
+  await sb.auth.signOut();
+  window.location.href = '/';
+}
+
+init();
+</script>
+</body>
+</html>
