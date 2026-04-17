@@ -125,3 +125,94 @@
   font-family: inherit !important;
   /* Allow strong/em/colors to remain if explicitly intended, but override generic word backgrounds */
 }
+/* =============================================
+   DARK MODE OVERRIDES
+   Sobrepõe cores hardcoded do HTML do e-book
+   ============================================= */
+
+/* Força herança de cor em todos os elementos filhos */
+.chapter-content * {
+  color: inherit;
+}
+
+/* Elementos com cor inline (style="color:#fff" etc) — light mode */
+.chapter-content [style*="color"] {
+  color: revert !important;
+}
+
+/* --- DARK MODE --- */
+.dark .chapter-content {
+  color: #e2e8f0;
+}
+
+.dark .chapter-content p,
+.dark .chapter-content li,
+.dark .chapter-content td,
+.dark .chapter-content th,
+.dark .chapter-content span,
+.dark .chapter-content div,
+.dark .chapter-content label {
+  color: #e2e8f0 !important;
+}
+
+.dark .chapter-content h1,
+.dark .chapter-content h2,
+.dark .chapter-content h3,
+.dark .chapter-content h4,
+.dark .chapter-content h5,
+.dark .chapter-content h6 {
+  color: #ffffff !important;
+}
+
+.dark .chapter-content strong,
+.dark .chapter-content b {
+  color: #ffffff !important;
+}
+
+/* Sobrepor qualquer cor inline em dark mode */
+.dark .chapter-content [style*="color"] {
+  color: #e2e8f0 !important;
+}
+
+/* Fundos inline (background rosa, azul, etc do e-book) */
+.dark .chapter-content [style*="background"] {
+  background-color: #1e293b !important;
+}
+
+/* Blockquote no dark */
+.dark .chapter-content blockquote {
+  color: #cbd5e0 !important;
+  background-color: #1e293b !important;
+  border-left-color: #6366f1 !important;
+}
+
+/* Tabelas no dark */
+.dark .chapter-content th {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+}
+
+.dark .chapter-content th,
+.dark .chapter-content td {
+  border-color: #4a5568 !important;
+  color: #e2e8f0 !important;
+}
+
+/* =============================================
+   LIGHT MODE — corrigir texto branco em fundos claros
+   ============================================= */
+
+/* Sobrepor text branco hardcoded no HTML do e-book */
+.chapter-content [style*="color: white"],
+.chapter-content [style*="color:#fff"],
+.chapter-content [style*="color: #fff"],
+.chapter-content [style*="color:#ffffff"],
+.chapter-content [style*="color: #ffffff"] {
+  color: #1f2937 !important;
+}
+
+/* Fundos escuros inline em light mode — tornar claros */
+.chapter-content [style*="background-color: #"],
+.chapter-content [style*="background:#"] {
+  color: #1f2937 !important;
+}
