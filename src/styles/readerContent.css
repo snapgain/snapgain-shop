@@ -1,8 +1,8 @@
 /* =============================================
-   READER CONTENT — SnapGain
+   SNAPGAIN READER — LIMPO E FUNCIONAL
+   Os estilos inline já foram removidos pelo JS
    ============================================= */
 
-/* ── BASE ── */
 .chapter-content {
   font-family: Georgia, Cambria, "Times New Roman", Times, serif;
   font-size: 1.125rem;
@@ -11,28 +11,23 @@
 }
 
 /* ══════════════════════════════════════
-   LIGHT MODE
-   Fundo rosa suave + texto preto em tudo
+   LIGHT MODE — Texto preto
    ══════════════════════════════════════ */
 
-.chapter-content,
-.chapter-content * {
-  color: #1a1a1a !important;
-  background-color: transparent !important;
-  border-color: #e5e7eb !important;
+.chapter-content {
+  color: #1a1a1a;
 }
 
-/* Títulos */
 .chapter-content h1,
 .chapter-content h2,
 .chapter-content h3,
 .chapter-content h4,
 .chapter-content h5,
 .chapter-content h6 {
-  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-weight: 700;
   line-height: 1.3;
-  color: #111111 !important;
+  color: #111111;
   clear: both;
 }
 
@@ -47,83 +42,60 @@
 .chapter-content ul, .chapter-content ol { margin-top: 0; margin-bottom: 1.5rem; padding-left: 1.75rem; }
 .chapter-content li { margin-bottom: 0.5rem; }
 
-/* Caixas com fundo (div, section, article com style background) */
-.chapter-content div[style],
-.chapter-content section[style],
-.chapter-content article[style],
-.chapter-content p[style],
-.chapter-content span[style] {
-  background-color: transparent !important;
-  background: none !important;
-  color: #1a1a1a !important;
-}
+.chapter-content a { color: #7c3aed; text-decoration: underline; }
+.chapter-content a:hover { color: #6d28d9; }
 
-/* Forçar fundos de caixas especiais para rosa suave */
-.chapter-content [style*="background"] {
-  background-color: #fce4f3 !important;
-  color: #1a1a1a !important;
-}
+.chapter-content strong, .chapter-content b { font-weight: 700; color: #111111; }
+.chapter-content em, .chapter-content i { font-style: italic; }
 
-/* Links */
-.chapter-content a,
-.chapter-content a * {
-  color: #7c3aed !important;
-}
-
-/* Blockquote */
 .chapter-content blockquote {
   border-left: 4px solid #d1d5db;
   padding: 1rem 1.25rem;
   margin: 0 0 1.5rem 0;
   font-style: italic;
-  background-color: #fce4f3 !important;
+  background-color: #fce4f3;
   border-radius: 0 0.5rem 0.5rem 0;
-}
-.chapter-content blockquote * {
-  color: #374151 !important;
+  color: #374151;
 }
 
-/* Tabelas */
 .chapter-content table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
   display: block;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
+
 .chapter-content th,
 .chapter-content td {
-  border: 1px solid #e5e7eb !important;
+  border: 1px solid #e5e7eb;
   padding: 0.875rem;
   text-align: left;
   min-width: 120px;
-  color: #1a1a1a !important;
-}
-.chapter-content th {
-  background-color: #fce4f3 !important;
-  font-weight: 600;
 }
 
-/* Imagens */
+.chapter-content th {
+  background-color: #fce4f3;
+  font-weight: 600;
+  color: #111111;
+}
+
 .chapter-content img {
   max-width: 100%;
   height: auto;
   display: block;
   margin: 2rem auto;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-  background-color: transparent !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 /* ══════════════════════════════════════
-   DARK MODE
-   Texto branco em tudo
+   DARK MODE — Texto branco
    ══════════════════════════════════════ */
 
-.dark .chapter-content,
-.dark .chapter-content * {
-  color: #ffffff !important;
-  background-color: transparent !important;
+.dark .chapter-content {
+  color: #ffffff;
 }
 
 .dark .chapter-content h1,
@@ -132,43 +104,39 @@
 .dark .chapter-content h4,
 .dark .chapter-content h5,
 .dark .chapter-content h6 {
-  color: #ffffff !important;
+  color: #ffffff;
 }
 
 .dark .chapter-content strong,
 .dark .chapter-content b {
-  color: #ffffff !important;
+  color: #ffffff;
 }
 
-.dark .chapter-content a,
-.dark .chapter-content a * {
-  color: #a78bfa !important;
+.dark .chapter-content a {
+  color: #a78bfa;
 }
 
-/* Caixas com background no dark mode */
-.dark .chapter-content [style*="background"],
-.dark .chapter-content div[style],
-.dark .chapter-content section[style],
-.dark .chapter-content p[style],
-.dark .chapter-content span[style] {
-  background-color: #1e293b !important;
-  background: #1e293b !important;
-  color: #ffffff !important;
+.dark .chapter-content a:hover {
+  color: #c4b5fd;
 }
 
 .dark .chapter-content blockquote {
-  background-color: #1e293b !important;
-  border-left-color: #ffffff !important;
-}
-.dark .chapter-content blockquote * {
-  color: #e2e8f0 !important;
+  background-color: #1e293b;
+  border-left-color: #6366f1;
+  color: #e2e8f0;
 }
 
 .dark .chapter-content th {
-  background-color: #1e293b !important;
+  background-color: #1e293b;
+  color: #ffffff;
 }
+
 .dark .chapter-content th,
 .dark .chapter-content td {
-  border-color: #4a5568 !important;
-  color: #ffffff !important;
+  border-color: #4a5568;
+  color: #ffffff;
+}
+
+.dark .chapter-content td {
+  color: #e2e8f0;
 }
