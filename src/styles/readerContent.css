@@ -140,3 +140,58 @@
 .dark .chapter-content td {
   color: #e2e8f0;
 }
+
+/* ══════════════════════════════════════
+   CLASSE .SG (capítulos especiais)
+   ══════════════════════════════════════ */
+
+/* Light mode — garante texto preto */
+.sg,
+.sg * {
+  color: #1a1a1a;
+}
+
+/* Dark mode — força texto branco */
+.dark .sg,
+.dark .sg *:not(svg):not(path):not(circle):not(line):not(polyline):not(polygon):not(rect):not(ellipse) {
+  color: #ffffff !important;
+}
+
+.dark .sg h1,
+.dark .sg h2,
+.dark .sg h3,
+.dark .sg h4 {
+  color: #ffffff !important;
+}
+
+/* Fundos escuros em dark mode */
+.dark .sg-section-bg {
+  background: rgba(30, 41, 59, 0.9) !important;
+  border-color: rgba(100, 116, 139, 0.3) !important;
+}
+
+.dark .sg-family-box,
+.dark .sg-cost-box,
+.dark .sg-quote-box,
+.dark .sg-chev,
+.dark .sg-blockquote {
+  background: rgba(30, 41, 59, 0.9) !important;
+  border-color: rgba(100, 116, 139, 0.3) !important;
+  color: #ffffff !important;
+}
+
+.dark .sg-warn {
+  background: rgba(51, 65, 85, 0.8) !important;
+  border-color: rgba(100, 116, 139, 0.3) !important;
+}
+
+/* Números e destaques mantêm cor dourada */
+.dark .sg-cost-highlight {
+  background: #fbbf24 !important;
+  color: #1a1a1a !important;
+}
+
+/* Gráficos SVG — mantém cores originais */
+.dark .sg svg text {
+  fill: #1a1a1a !important;
+}
