@@ -58,11 +58,11 @@ const ChapterReader = () => {
         }
         .dark .sg-blockquote {
           background: rgba(30, 41, 59, 0.9) !important;
-          border-color: #6366f1 !important;
+          border-color: #ffffff !important;
         }
         .dark .sg-cost-highlight {
           background: #fbbf24 !important;
-          color: #1a1a1a !important;
+          color: #ffffff !important;
         }
       `;
     }
