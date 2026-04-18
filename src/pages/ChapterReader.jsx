@@ -11,6 +11,19 @@ import { supabase } from "@/lib/supabaseClient";
 import "@/styles/readerContent.css";
 
 const ChapterReader = () => {
+  const cleanEbookHTML = (html) => {
+    if (!html) return '';
+    
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    
+    // Remove estilos inline de todos os elementos exceto imagens
+    doc.querySelectorAll('*:not(img):not(svg)').forEach((el) => {
+      el.removeAttribute('style');
+    });
+    
+    return doc.body.innerHTML;
+  };
   const { productSlug, locale = "en", chapterNumber } = useParams();
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -238,8 +251,8 @@ const ChapterReader = () => {
             </div>
 
             <div
-              className="chapter-content relative z-20"
-              dangerouslySetInnerHTML={{ __html: chapter.html_content }}
+  className="chapter-content relative z-20"
+  dangerouslySetInnerHTML={{ __html: cleanEbookHTML(chapter.html_content) }}
             />
           </motion.div>
 
