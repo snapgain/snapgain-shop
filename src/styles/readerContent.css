@@ -1,85 +1,77 @@
+/* =============================================
+   READER CONTENT — SnapGain
+   ============================================= */
+
 .chapter-content {
   font-family: Georgia, Cambria, "Times New Roman", Times, serif;
   font-size: 1.125rem;
-  line-height: 1.7; /* 1.6-1.8 line-height as requested */
-  color: var(--text-primary, #1f2937);
+  line-height: 1.7;
+  color: #1f2937;
   max-width: 100%;
 }
 
-.chapter-content p {
-  margin-top: 0;
-  margin-bottom: 1.5rem; /* 1.5rem between paragraphs */
+/* ── LIGHT MODE: forçar texto escuro em TUDO ── */
+.chapter-content *:not(img):not(svg):not(path) {
+  color: #1f2937 !important;
+  background-color: transparent !important;
 }
 
+/* Excepção: links */
+.chapter-content a,
+.chapter-content a * {
+  color: var(--color-purple, #7c3aed) !important;
+}
+
+/* Excepção: títulos dourados/coloridos — mantém se tiver classe específica */
 .chapter-content h1,
 .chapter-content h2,
 .chapter-content h3,
 .chapter-content h4,
 .chapter-content h5,
 .chapter-content h6 {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: ui-sans-serif, system-ui, sans-serif;
   font-weight: 700;
   line-height: 1.3;
-  color: var(--text-primary, #111827);
+  color: #111827 !important;
   clear: both;
 }
 
-.chapter-content h1 {
-  font-size: 2.25rem;
-  margin-top: 2.5rem;
-  margin-bottom: 1.5rem;
+/* Tamanhos de título */
+.chapter-content h1 { font-size: 2.25rem; margin-top: 2.5rem; margin-bottom: 1.5rem; }
+.chapter-content h2 { font-size: 1.75rem; margin-top: 2rem; margin-bottom: 1.25rem; }
+.chapter-content h3 { font-size: 1.5rem; margin-top: 1.75rem; margin-bottom: 1rem; }
+.chapter-content h4 { font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 1rem; }
+.chapter-content h5 { font-size: 1.125rem; margin-top: 1.25rem; margin-bottom: 0.75rem; }
+.chapter-content h6 { font-size: 1rem; margin-top: 1.25rem; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.chapter-content p { margin-top: 0; margin-bottom: 1.5rem; }
+
+.chapter-content ul,
+.chapter-content ol { margin-top: 0; margin-bottom: 1.5rem; padding-left: 1.75rem; }
+.chapter-content li { margin-bottom: 0.5rem; }
+
+/* Blockquote */
+.chapter-content blockquote {
+  border-left: 4px solid #9ca3af;
+  padding: 1rem 1.25rem;
+  margin: 0 0 1.5rem 0;
+  font-style: italic;
+  background-color: #f3f4f6 !important;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.chapter-content blockquote * {
+  color: #374151 !important;
 }
 
-.chapter-content h2 {
-  font-size: 1.75rem;
-  margin-top: 2rem;
-  margin-bottom: 1.25rem;
-}
-
-.chapter-content h3 {
-  font-size: 1.5rem;
-  margin-top: 1.75rem;
-  margin-bottom: 1rem;
-}
-
-.chapter-content h4 {
-  font-size: 1.25rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.chapter-content h5 {
-  font-size: 1.125rem;
-  margin-top: 1.25rem;
-  margin-bottom: 0.75rem;
-}
-
-.chapter-content h6 {
-  font-size: 1rem;
-  margin-top: 1.25rem;
-  margin-bottom: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.chapter-content img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 2rem auto; /* Proper margins and center alignment */
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
+/* Tabelas */
 .chapter-content table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
   display: block;
-  overflow-x: auto; /* Prevent layout breaking */
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
-
 .chapter-content th,
 .chapter-content td {
   border: 1px solid #e5e7eb;
@@ -87,72 +79,34 @@
   text-align: left;
   min-width: 120px;
 }
-
 .chapter-content th {
-  background-color: #f9fafb;
+  background-color: #f9fafb !important;
   font-weight: 600;
 }
 
-.chapter-content blockquote {
-  border-left: 4px solid #9ca3af;
-  padding-left: 1.25rem;
-  margin-left: 0;
-  margin-right: 0;
-  margin-bottom: 1.5rem;
-  font-style: italic;
-  color: #4b5563;
-  background-color: #f3f4f6;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  border-radius: 0 0.5rem 0.5rem 0;
+/* Imagens */
+.chapter-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 2rem auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
 }
 
-.chapter-content ul,
-.chapter-content ol {
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  padding-left: 1.75rem;
+/* Caixas com fundo colorido (rosa, azul, etc) — light mode */
+.chapter-content [style*="background"] {
+  background-color: #f3f4f6 !important;
 }
 
-.chapter-content li {
-  margin-bottom: 0.5rem;
-}
-
-/* Remove excessive Word HTML styling */
-.chapter-content span,
-.chapter-content div {
-  background: transparent !important;
-  font-family: inherit !important;
-  /* Allow strong/em/colors to remain if explicitly intended, but override generic word backgrounds */
-}
-/* =============================================
-   DARK MODE OVERRIDES
-   Sobrepõe cores hardcoded do HTML do e-book
-   ============================================= */
-
-/* Força herança de cor em todos os elementos filhos */
-.chapter-content * {
-  color: inherit;
-}
-
-/* Elementos com cor inline (style="color:#fff" etc) — light mode */
-.chapter-content [style*="color"] {
-  color: revert !important;
-}
-
-/* --- DARK MODE --- */
+/* ── DARK MODE ── */
 .dark .chapter-content {
   color: #e2e8f0;
 }
 
-.dark .chapter-content p,
-.dark .chapter-content li,
-.dark .chapter-content td,
-.dark .chapter-content th,
-.dark .chapter-content span,
-.dark .chapter-content div,
-.dark .chapter-content label {
+.dark .chapter-content *:not(img):not(svg):not(path) {
   color: #e2e8f0 !important;
+  background-color: transparent !important;
 }
 
 .dark .chapter-content h1,
@@ -169,50 +123,28 @@
   color: #ffffff !important;
 }
 
-/* Sobrepor qualquer cor inline em dark mode */
-.dark .chapter-content [style*="color"] {
-  color: #e2e8f0 !important;
+.dark .chapter-content a,
+.dark .chapter-content a * {
+  color: var(--color-purple, #a78bfa) !important;
 }
 
-/* Fundos inline (background rosa, azul, etc do e-book) */
-.dark .chapter-content [style*="background"] {
-  background-color: #1e293b !important;
-}
-
-/* Blockquote no dark */
 .dark .chapter-content blockquote {
-  color: #cbd5e0 !important;
   background-color: #1e293b !important;
   border-left-color: #6366f1 !important;
 }
-
-/* Tabelas no dark */
-.dark .chapter-content th {
-  background-color: #1e293b !important;
-  color: #ffffff !important;
+.dark .chapter-content blockquote * {
+  color: #cbd5e0 !important;
 }
 
+.dark .chapter-content th {
+  background-color: #1e293b !important;
+}
 .dark .chapter-content th,
 .dark .chapter-content td {
   border-color: #4a5568 !important;
-  color: #e2e8f0 !important;
 }
 
-/* =============================================
-   LIGHT MODE — corrigir texto branco em fundos claros
-   ============================================= */
-
-/* Sobrepor text branco hardcoded no HTML do e-book */
-.chapter-content [style*="color: white"],
-.chapter-content [style*="color:#fff"],
-.chapter-content [style*="color: #fff"],
-.chapter-content [style*="color:#ffffff"],
-.chapter-content [style*="color: #ffffff"] {
-  color: #1f2937 !important;
-}
-
-/* Fundos escuros inline em light mode — tornar claros */
-.chapter-content [style*="background-color: #"],
-.chapter-content [style*="background:#"] {
-  color: #1f2937 !important;
+/* Caixas com fundo colorido — dark mode */
+.dark .chapter-content [style*="background"] {
+  background-color: #1e293b !important;
 }
