@@ -9,6 +9,7 @@ import { useReadingProgress } from "@/hooks/useReadingProgress";
 import { getAllChapters, getChapter, getChapterSections } from "@/lib/chapters";
 import { supabase } from "@/lib/supabaseClient";
 import "@/styles/readerContent.css";
+import "@/styles/ebookDesign.css";
 
 const ChapterReader = () => {
   // ═══════════════════════════════════════════════════════════
