@@ -154,3 +154,11 @@
 [data-theme="dark"] a[href*="/reader/"]:hover {
   color: #FFFFFF !important;
 }
+
+/* ══════════════════════════════════════ 
+   FIX: Apenas o título "Table of Contents" 
+   ══════════════════════════════════════ */
+
+[data-theme="dark"] h1 {
+  color: #FFFFFF !important;
+}
