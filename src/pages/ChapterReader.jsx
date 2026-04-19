@@ -264,7 +264,7 @@ const ChapterReader = () => {
               <ul className="space-y-2">
                 {sections.map((section) => (
                   <li key={section.id}>
-                    
+                    <a
                       href={`#${section.anchor_id}`}
                       className="text-[var(--color-purple)] hover:underline"
                     >
