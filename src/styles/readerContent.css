@@ -1,6 +1,5 @@
 /* =============================================
    SNAPGAIN READER CONTENT
-   Light mode + Dark mode + Suporte para .sg
    ============================================= */
 
 .chapter-content {
@@ -10,76 +9,51 @@
   max-width: 100%;
 }
 
-/* ══════════════════════════════════════
-   LIGHT MODE — Texto preto
-   ══════════════════════════════════════ */
-
-.chapter-content {
-  color: #1a1a1a;
+/* ══════════════════════════════════════ LIGHT MODE ══════════════════════════════════════ */
+.chapter-content,
+.chapter-content * {
+  color: #1a1a1a !important;
 }
 
-.chapter-content h1,
-.chapter-content h2,
-.chapter-content h3,
-.chapter-content h4,
-.chapter-content h5,
-.chapter-content h6 {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+.chapter-content h1, .chapter-content h2, .chapter-content h3,
+.chapter-content h4, .chapter-content h5, .chapter-content h6 {
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
   font-weight: 700;
   line-height: 1.3;
-  color: #111111;
+  color: #111111 !important;
   clear: both;
 }
 
-.chapter-content h1 { font-size: 2.25rem; margin-top: 2.5rem; margin-bottom: 1.5rem; }
-.chapter-content h2 { font-size: 1.75rem; margin-top: 2rem; margin-bottom: 1.25rem; }
-.chapter-content h3 { font-size: 1.5rem; margin-top: 1.75rem; margin-bottom: 1rem; }
-.chapter-content h4 { font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 1rem; }
-.chapter-content h5 { font-size: 1.125rem; margin-top: 1.25rem; margin-bottom: 0.75rem; }
-.chapter-content h6 { font-size: 1rem; margin-top: 1.25rem; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.chapter-content h1 { font-size: 2.25rem; margin: 2.5rem 0 1.5rem; }
+.chapter-content h2 { font-size: 1.75rem; margin: 2rem 0 1.25rem; }
+.chapter-content h3 { font-size: 1.5rem; margin: 1.75rem 0 1rem; }
+.chapter-content h4 { font-size: 1.25rem; margin: 1.5rem 0 1rem; }
+.chapter-content h5 { font-size: 1.125rem; margin: 1.25rem 0 0.75rem; }
+.chapter-content h6 { font-size: 1rem; margin: 1.25rem 0 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
 
-.chapter-content p { margin-top: 0; margin-bottom: 1.5rem; }
-.chapter-content ul, .chapter-content ol { margin-top: 0; margin-bottom: 1.5rem; padding-left: 1.75rem; }
+.chapter-content p { margin: 0 0 1.5rem; }
+.chapter-content ul, .chapter-content ol { margin: 0 0 1.5rem; padding-left: 1.75rem; }
 .chapter-content li { margin-bottom: 0.5rem; }
 
-.chapter-content a { color: #7c3aed; text-decoration: underline; }
-.chapter-content a:hover { color: #6d28d9; }
+.chapter-content a { color: #7c3aed !important; text-decoration: underline; }
+.chapter-content a:hover { color: #6d28d9 !important; }
 
-.chapter-content strong, .chapter-content b { font-weight: 700; color: #111111; }
+.chapter-content strong, .chapter-content b { font-weight: 700; color: #111111 !important; }
 .chapter-content em, .chapter-content i { font-style: italic; }
 
 .chapter-content blockquote {
   border-left: 4px solid #d1d5db;
   padding: 1rem 1.25rem;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 1.5rem;
   font-style: italic;
-  background-color: #fce4f3;
+  background-color: #fce4f3 !important;
   border-radius: 0 0.5rem 0.5rem 0;
-  color: #374151;
+  color: #374151 !important;
 }
 
-.chapter-content table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  display: block;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.chapter-content th,
-.chapter-content td {
-  border: 1px solid #e5e7eb;
-  padding: 0.875rem;
-  text-align: left;
-  min-width: 120px;
-}
-
-.chapter-content th {
-  background-color: #fce4f3;
-  font-weight: 600;
-  color: #111111;
-}
+.chapter-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; display: block; overflow-x: auto; }
+.chapter-content th, .chapter-content td { border: 1px solid #e5e7eb; padding: 0.875rem; text-align: left; min-width: 120px; }
+.chapter-content th { background-color: #fce4f3 !important; font-weight: 600; color: #111111 !important; }
 
 .chapter-content img {
   max-width: 100%;
@@ -87,121 +61,84 @@
   display: block;
   margin: 2rem auto;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-/* ══════════════════════════════════════
-   DARK MODE — Texto branco
-   ══════════════════════════════════════ */
-
-.dark .chapter-content {
-  color: #ffffff;
+/* ══════════════════════════════════════ DARK MODE ══════════════════════════════════════ */
+[data-theme="dark"] .chapter-content,
+[data-theme="dark"] .chapter-content * {
+  color: #FFFFFF !important;
+  background-color: transparent !important;
 }
 
-.dark .chapter-content h1,
-.dark .chapter-content h2,
-.dark .chapter-content h3,
-.dark .chapter-content h4,
-.dark .chapter-content h5,
-.dark .chapter-content h6 {
-  color: #ffffff;
+[data-theme="dark"] .chapter-content h1,
+[data-theme="dark"] .chapter-content h2,
+[data-theme="dark"] .chapter-content h3,
+[data-theme="dark"] .chapter-content h4,
+[data-theme="dark"] .chapter-content h5,
+[data-theme="dark"] .chapter-content h6 {
+  color: #FFFFFF !important;
 }
 
-.dark .chapter-content strong,
-.dark .chapter-content b {
-  color: #ffffff;
+[data-theme="dark"] .chapter-content strong,
+[data-theme="dark"] .chapter-content b {
+  color: #FFFFFF !important;
 }
 
-.dark .chapter-content a {
-  color: #a78bfa;
+[data-theme="dark"] .chapter-content a {
+  color: #a78bfa !important;
 }
 
-.dark .chapter-content a:hover {
-  color: #c4b5fd;
+[data-theme="dark"] .chapter-content a:hover {
+  color: #c4b5fd !important;
 }
 
-.dark .chapter-content blockquote {
-  background-color: #1e293b;
+[data-theme="dark"] .chapter-content blockquote {
+  background-color: #1e293b !important;
   border-left-color: #6366f1;
-  color: #e2e8f0;
+  color: #e2e8f0 !important;
 }
 
-.dark .chapter-content th {
-  background-color: #1e293b;
-  color: #ffffff;
+[data-theme="dark"] .chapter-content th {
+  background-color: #1e293b !important;
+  color: #FFFFFF !important;
 }
 
-.dark .chapter-content th,
-.dark .chapter-content td {
+[data-theme="dark"] .chapter-content td {
+  color: #e2e8f0 !important;
   border-color: #4a5568;
-  color: #ffffff;
 }
 
-.dark .chapter-content td {
-  color: #e2e8f0;
+/* ══════════════════════════════════════ CLASSE .SG ══════════════════════════════════════ */
+.sg, .sg * { color: #1a1a1a; }
+
+[data-theme="dark"] .sg,
+[data-theme="dark"] .sg * {
+  color: #FFFFFF !important;
 }
 
-/* ══════════════════════════════════════
-   CLASSE .SG (capítulos especiais)
-   ══════════════════════════════════════ */
-
-/* Light mode — garante texto preto */
-.sg,
-.sg * {
-  color: #1a1a1a;
+[data-theme="dark"] .sg h1,
+[data-theme="dark"] .sg h2,
+[data-theme="dark"] .sg h3,
+[data-theme="dark"] .sg h4 {
+  color: #FFFFFF !important;
 }
 
-/* Dark mode — força texto branco */
-.dark .sg,
-.dark .sg *:not(svg):not(path):not(circle):not(line):not(polyline):not(polygon):not(rect):not(ellipse) {
-  color: #ffffff !important;
-}
-
-.dark .sg h1,
-.dark .sg h2,
-.dark .sg h3,
-.dark .sg h4 {
-  color: #ffffff !important;
-}
-
-/* Fundos escuros em dark mode */
-.dark .sg-section-bg {
+[data-theme="dark"] .sg-section-bg,
+[data-theme="dark"] .sg-family-box,
+[data-theme="dark"] .sg-cost-box,
+[data-theme="dark"] .sg-quote-box,
+[data-theme="dark"] .sg-chev,
+[data-theme="dark"] .sg-blockquote {
   background: rgba(30, 41, 59, 0.9) !important;
   border-color: rgba(100, 116, 139, 0.3) !important;
+  color: #FFFFFF !important;
 }
 
-.dark .sg-family-box,
-.dark .sg-cost-box,
-.dark .sg-quote-box,
-.dark .sg-chev,
-.dark .sg-blockquote {
-  background: rgba(30, 41, 59, 0.9) !important;
-  border-color: rgba(100, 116, 139, 0.3) !important;
-  color: #ffffff !important;
-}
-
-.dark .sg-warn {
-  background: rgba(51, 65, 85, 0.8) !important;
-  border-color: rgba(100, 116, 139, 0.3) !important;
-}
-
-/* Números e destaques mantêm cor dourada */
-.dark .sg-cost-highlight {
+[data-theme="dark"] .sg-cost-highlight {
   background: #fbbf24 !important;
   color: #1a1a1a !important;
 }
 
-/* Gráficos SVG — mantém números legíveis */
-.dark .sg svg text {
-  fill: #1a1a1a !important;
-}
-
-/* Ícones nos pins da estrada */
-.dark .sg-pin-icon {
-  background: #d9a93a !important;
-  color: #1a1a1a !important;
-}
-
-.dark .sg-warn-icon {
-  border-color: #fbbf24 !important;
-}
+[data-theme="dark"] .sg svg text { fill: #1a1a1a !important; }
+[data-theme="dark"] .sg-pin-icon { background: #d9a93a !important; color: #1a1a1a !important; }
