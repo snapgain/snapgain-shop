@@ -173,3 +173,15 @@
 [data-theme="dark"] .group:hover .text-gray-900 {
   color: var(--color-purple) !important;
 }
+
+/* ══════════════════════════════════════ 
+   FIX: Progress indicator (canto superior direito) no dark mode
+   ══════════════════════════════════════ */
+
+[data-theme="dark"] .text-gray-700 {
+  color: #E5E7EB !important;
+}
+
+[data-theme="dark"] .text-gray-500 {
+  color: #9CA3AF !important;
+}
