@@ -1,18 +1,9 @@
 /* ═══════════════════════════════════════════════════════════════
-   SNAPGAIN E-BOOK READER — CSS QUE NÃO INTERFERE COM INLINE STYLES
-   ═══════════════════════════════════════════════════════════════
-   
-   Este CSS:
-   ✅ Permite que cada capítulo use seu CSS inline completo
-   ✅ Não força cores ou fundos que sobrescrevam o design do PDF
-   ✅ Mantém dark mode funcionando corretamente
-   ✅ Não quebra nada que já está funcionando
-   
+   FIX CRÍTICO - GARANTE QUE TODO O CONTEÚDO RENDERIZE
    ═══════════════════════════════════════════════════════════════ */
 
-/* ══════════ CONTAINER PRINCIPAL ══════════ */
+/* Remove QUALQUER limitação de altura */
 .chapter-content {
-  /* Remove qualquer fundo forçado — deixa o inline CSS decidir */
   background: transparent;
   font-family: inherit;
   font-size: 1rem;
@@ -20,13 +11,39 @@
   max-width: 100%;
   padding: 0;
   margin: 0;
+  
+  /* FIX CRÍTICO: Garante que TODO conteúdo apareça */
+  max-height: none !important;
+  height: auto !important;
+  overflow: visible !important;
+  display: block !important;
 }
 
 /* Garante que divs com classes .sg* usem seu próprio CSS inline */
 .chapter-content > div[class^="sg"] {
   position: relative;
   z-index: 1;
-  /* Não força nada — deixa o inline CSS trabalhar */
+  
+  /* FIX CRÍTICO: Remove limitações */
+  max-height: none !important;
+  height: auto !important;
+  overflow: visible !important;
+  display: block !important;
+}
+
+/* Garante que todos os elementos dentro do conteúdo sejam visíveis */
+.chapter-content * {
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* Remove display:none de qualquer plataforma/seção */
+.chapter-content .sg3-platform,
+.chapter-content [class*="platform"],
+.chapter-content section {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 /* ══════════ IMAGENS ══════════ */
@@ -46,15 +63,10 @@
 }
 
 /* ══════════ DARK MODE ══════════ */
-/* IMPORTANTE: Usa atributo [data-theme="dark"] */
-
 [data-theme="dark"] .chapter-content {
-  /* Em dark mode, permite que inline styles ainda funcionem,
-     mas garante que texto é legível se não houver inline CSS */
   color: #ffffff;
 }
 
-/* Garante que headings são brancos em dark mode */
 [data-theme="dark"] .chapter-content h1,
 [data-theme="dark"] .chapter-content h2,
 [data-theme="dark"] .chapter-content h3,
@@ -64,14 +76,12 @@
   color: #ffffff !important;
 }
 
-/* Garante que parágrafos são brancos em dark mode */
 [data-theme="dark"] .chapter-content p,
 [data-theme="dark"] .chapter-content li,
 [data-theme="dark"] .chapter-content span:not([style*="color"]) {
   color: #e2e8f0 !important;
 }
 
-/* Fundos de boxes em dark mode */
 [data-theme="dark"] .chapter-content [class*="-card"],
 [data-theme="dark"] .chapter-content [class*="-box"],
 [data-theme="dark"] .chapter-content [class*="-wrap"] {
@@ -79,7 +89,6 @@
   border-color: rgba(100, 116, 139, 0.3) !important;
 }
 
-/* Tabelas em dark mode */
 [data-theme="dark"] .chapter-content table {
   border-color: rgba(100, 116, 139, 0.3) !important;
 }
@@ -90,7 +99,6 @@
   color: #ffffff !important;
 }
 
-/* Links em dark mode */
 [data-theme="dark"] .chapter-content a {
   color: #a78bfa !important;
 }
@@ -106,7 +114,6 @@
     font-size: 0.9375rem;
   }
   
-  /* Força grids responsivos */
   .chapter-content [style*="display: grid"],
   .chapter-content [style*="display:grid"] {
     grid-template-columns: 1fr !important;
@@ -119,16 +126,7 @@
   }
 }
 
-/* ══════════ UTILITY CLASSES (NÃO INTERFEREM) ══════════ */
-.chapter-content .text-center {
-  text-align: center;
-}
-
-.chapter-content .text-right {
-  text-align: right;
-}
-
+.chapter-content .text-center { text-align: center; }
+.chapter-content .text-right { text-align: right; }
 .chapter-content .mt-0 { margin-top: 0; }
 .chapter-content .mb-0 { margin-bottom: 0; }
-
-/* ══════════ FIM ══════════ */
