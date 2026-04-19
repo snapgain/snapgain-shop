@@ -142,3 +142,15 @@
 
 [data-theme="dark"] .sg svg text { fill: #1a1a1a !important; }
 [data-theme="dark"] .sg-pin-icon { background: #d9a93a !important; color: #1a1a1a !important; }
+
+/* ══════════════════════════════════════ 
+   FIX: "Table of Contents" link no dark mode 
+   ══════════════════════════════════════ */
+
+[data-theme="dark"] a[href*="/reader/"] {
+  color: #C4B5FD !important;
+}
+
+[data-theme="dark"] a[href*="/reader/"]:hover {
+  color: #FFFFFF !important;
+}
