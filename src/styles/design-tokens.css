@@ -87,7 +87,7 @@ body {
   --bg-primary: var(--color-dark-bg);
   --bg-secondary: var(--color-card-dark);
   --text-primary: var(--color-text-light);
-  --text-secondary: var(--color-text-light);
+  --text-secondary: var(--color-text-muted-light);
 }
 
 /* Light Mode */
