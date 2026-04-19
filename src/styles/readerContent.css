@@ -1,119 +1,207 @@
-src/styles/readerContent.css
+/* =============================================
+   SNAPGAIN READER CONTENT
+   Light mode + Dark mode + Suporte para .sg
+   ============================================= */
+
 .chapter-content {
   font-family: Georgia, Cambria, "Times New Roman", Times, serif;
   font-size: 1.125rem;
-  line-height: 1.7; /* 1.6-1.8 line-height as requested */
-  color: var(--text-primary, 
-#1f2937);
+  line-height: 1.7;
   max-width: 100%;
 }
-.chapter-content p {
-  margin-top: 0;
-  margin-bottom: 1.5rem; /* 1.5rem between paragraphs */
+
+/* ══════════════════════════════════════
+   LIGHT MODE — Texto preto
+   ══════════════════════════════════════ */
+
+.chapter-content {
+  color: #1a1a1a;
 }
+
 .chapter-content h1,
 .chapter-content h2,
 .chapter-content h3,
 .chapter-content h4,
 .chapter-content h5,
 .chapter-content h6 {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-weight: 700;
   line-height: 1.3;
-  color: var(--text-primary, 
-#111827);
+  color: #111111;
   clear: both;
 }
-.chapter-content h1 {
-  font-size: 2.25rem;
-  margin-top: 2.5rem;
-  margin-bottom: 1.5rem;
+
+.chapter-content h1 { font-size: 2.25rem; margin-top: 2.5rem; margin-bottom: 1.5rem; }
+.chapter-content h2 { font-size: 1.75rem; margin-top: 2rem; margin-bottom: 1.25rem; }
+.chapter-content h3 { font-size: 1.5rem; margin-top: 1.75rem; margin-bottom: 1rem; }
+.chapter-content h4 { font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 1rem; }
+.chapter-content h5 { font-size: 1.125rem; margin-top: 1.25rem; margin-bottom: 0.75rem; }
+.chapter-content h6 { font-size: 1rem; margin-top: 1.25rem; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.chapter-content p { margin-top: 0; margin-bottom: 1.5rem; }
+.chapter-content ul, .chapter-content ol { margin-top: 0; margin-bottom: 1.5rem; padding-left: 1.75rem; }
+.chapter-content li { margin-bottom: 0.5rem; }
+
+.chapter-content a { color: #7c3aed; text-decoration: underline; }
+.chapter-content a:hover { color: #6d28d9; }
+
+.chapter-content strong, .chapter-content b { font-weight: 700; color: #111111; }
+.chapter-content em, .chapter-content i { font-style: italic; }
+
+.chapter-content blockquote {
+  border-left: 4px solid #d1d5db;
+  padding: 1rem 1.25rem;
+  margin: 0 0 1.5rem 0;
+  font-style: italic;
+  background-color: #fce4f3;
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: #374151;
 }
-.chapter-content h2 {
-  font-size: 1.75rem;
-  margin-top: 2rem;
-  margin-bottom: 1.25rem;
-}
-.chapter-content h3 {
-  font-size: 1.5rem;
-  margin-top: 1.75rem;
-  margin-bottom: 1rem;
-}
-.chapter-content h4 {
-  font-size: 1.25rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-}
-.chapter-content h5 {
-  font-size: 1.125rem;
-  margin-top: 1.25rem;
-  margin-bottom: 0.75rem;
-}
-.chapter-content h6 {
-  font-size: 1rem;
-  margin-top: 1.25rem;
-  margin-bottom: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.chapter-content img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 2rem auto; /* Proper margins and center alignment */
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
+
 .chapter-content table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
   display: block;
-  overflow-x: auto; /* Prevent layout breaking */
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
+
 .chapter-content th,
 .chapter-content td {
-  border: 1px solid 
-#e5e7eb;
+  border: 1px solid #e5e7eb;
   padding: 0.875rem;
   text-align: left;
   min-width: 120px;
 }
+
 .chapter-content th {
-  background-color: 
-#f9fafb;
+  background-color: #fce4f3;
   font-weight: 600;
+  color: #111111;
 }
-.chapter-content blockquote {
-  border-left: 4px solid 
-#9ca3af;
-  padding-left: 1.25rem;
-  margin-left: 0;
-  margin-right: 0;
-  margin-bottom: 1.5rem;
-  font-style: italic;
-  color: 
-#4b5563;
-  background-color: 
-#f3f4f6;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  border-radius: 0 0.5rem 0.5rem 0;
+
+.chapter-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 2rem auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
-.chapter-content ul,
-.chapter-content ol {
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  padding-left: 1.75rem;
+
+/* ══════════════════════════════════════
+   DARK MODE — Texto branco
+   ══════════════════════════════════════ */
+
+.dark .chapter-content {
+  color: #ffffff;
 }
-.chapter-content li {
-  margin-bottom: 0.5rem;
+
+.dark .chapter-content h1,
+.dark .chapter-content h2,
+.dark .chapter-content h3,
+.dark .chapter-content h4,
+.dark .chapter-content h5,
+.dark .chapter-content h6 {
+  color: #ffffff;
 }
-/* Remove excessive Word HTML styling */
-.chapter-content span,
-.chapter-content div {
-  background: transparent !important;
-  font-family: inherit !important;
-  /* Allow strong/em/colors to remain if explicitly intended, but override generic word backgrounds */
+
+.dark .chapter-content strong,
+.dark .chapter-content b {
+  color: #ffffff;
+}
+
+.dark .chapter-content a {
+  color: #a78bfa;
+}
+
+.dark .chapter-content a:hover {
+  color: #c4b5fd;
+}
+
+.dark .chapter-content blockquote {
+  background-color: #1e293b;
+  border-left-color: #6366f1;
+  color: #e2e8f0;
+}
+
+.dark .chapter-content th {
+  background-color: #1e293b;
+  color: #ffffff;
+}
+
+.dark .chapter-content th,
+.dark .chapter-content td {
+  border-color: #4a5568;
+  color: #ffffff;
+}
+
+.dark .chapter-content td {
+  color: #e2e8f0;
+}
+
+/* ══════════════════════════════════════
+   CLASSE .SG (capítulos especiais)
+   ══════════════════════════════════════ */
+
+/* Light mode — garante texto preto */
+.sg,
+.sg * {
+  color: #1a1a1a;
+}
+
+/* Dark mode — força texto branco */
+.dark .sg,
+.dark .sg *:not(svg):not(path):not(circle):not(line):not(polyline):not(polygon):not(rect):not(ellipse) {
+  color: #ffffff !important;
+}
+
+.dark .sg h1,
+.dark .sg h2,
+.dark .sg h3,
+.dark .sg h4 {
+  color: #ffffff !important;
+}
+
+/* Fundos escuros em dark mode */
+.dark .sg-section-bg {
+  background: rgba(30, 41, 59, 0.9) !important;
+  border-color: rgba(100, 116, 139, 0.3) !important;
+}
+
+.dark .sg-family-box,
+.dark .sg-cost-box,
+.dark .sg-quote-box,
+.dark .sg-chev,
+.dark .sg-blockquote {
+  background: rgba(30, 41, 59, 0.9) !important;
+  border-color: rgba(100, 116, 139, 0.3) !important;
+  color: #ffffff !important;
+}
+
+.dark .sg-warn {
+  background: rgba(51, 65, 85, 0.8) !important;
+  border-color: rgba(100, 116, 139, 0.3) !important;
+}
+
+/* Números e destaques mantêm cor dourada */
+.dark .sg-cost-highlight {
+  background: #fbbf24 !important;
+  color: #1a1a1a !important;
+}
+
+/* Gráficos SVG — mantém números legíveis */
+.dark .sg svg text {
+  fill: #1a1a1a !important;
+}
+
+/* Ícones nos pins da estrada */
+.dark .sg-pin-icon {
+  background: #d9a93a !important;
+  color: #1a1a1a !important;
+}
+
+.dark .sg-warn-icon {
+  border-color: #fbbf24 !important;
 }
