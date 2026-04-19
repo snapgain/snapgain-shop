@@ -106,6 +106,13 @@ const ChapterReader = () => {
           getAllChapters(productData.id, locale),
         ]);
 
+        // 👇 ADICIONA ESTAS 4 LINHAS AQUI
+console.log('🔍 Debug sections:');
+console.log('productId:', productData.id);
+console.log('locale:', locale);
+console.log('currentChapter:', currentChapter);
+console.log('sectionsData:', sectionsData);
+        
         setProduct(productData);
         setChapter(chapterData);
         setSections(sectionsData);
