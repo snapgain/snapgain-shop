@@ -157,10 +157,19 @@
 
 /* ══════════════════════════════════════ 
    FIX: Título "Table of Contents" no dark mode
-   (sobrescreve text-gray-900 do Tailwind)
+   (mas mantém títulos dos capítulos pretos nos cards brancos)
    ══════════════════════════════════════ */
 
-[data-theme="dark"] h2.text-gray-900,
 [data-theme="dark"] .text-gray-900 {
   color: #FFFFFF !important;
+}
+
+/* EXCETO quando estiver dentro de um card com fundo branco */
+[data-theme="dark"] .bg-white .text-gray-900 {
+  color: #1A1A1A !important;
+}
+
+/* MAS no hover do card, fica roxo (preserva o efeito hover) */
+[data-theme="dark"] .group:hover .text-gray-900 {
+  color: var(--color-purple) !important;
 }
