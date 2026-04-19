@@ -1,33 +1,21 @@
 :root {
-  /* =========================
-     SnapGain Brand Colours
-     ========================= */
+  /* ========================= SnapGain Brand Colours ========================= */
   --color-purple: #7D4DFB;
   --color-neon-green: #99FF33;
   --color-pink: #FF3FCE;
   --color-light-green: #BFFFB4;
 
-  /* =========================
-     Neutral Colours
-     ========================= */
+  /* ========================= Neutral Colours ========================= */
   --color-ink: #1A1A1A;
-  /* main text */
   --color-ink-muted: #555555;
-  /* secondary text */
   --color-white: #FFFFFF;
-
-  /* Dark palette */
   --color-dark-bg: #0F0F0F;
   --color-card-dark: #1A1A1A;
   --color-text-light: #FFFFFF;
   --color-text-muted-light: #999999;
 
-  /* =========================
-     Theme Defaults (LIGHT)
-     These are the actual tokens used by the app
-     ========================= */
+  /* ========================= Theme Defaults (LIGHT) ========================= */
   --bg-primary: #FDE7F6;
-  /* SnapGain pastel */
   --bg-secondary: rgba(255, 255, 255, 0.55);
   --text-primary: var(--color-ink);
   --text-secondary: var(--color-ink-muted);
@@ -43,19 +31,11 @@
   --gradient-card: linear-gradient(135deg, rgba(125, 77, 251, 0.10) 0%, rgba(255, 63, 206, 0.10) 100%);
 
   /* Spacing */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
+  --space-xs: 0.25rem; --space-sm: 0.5rem; --space-md: 1rem;
+  --space-lg: 1.5rem; --space-xl: 2rem; --space-2xl: 3rem; --space-3xl: 4rem;
 
   /* Radius */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --radius-xl: 24px;
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 18px; --radius-xl: 24px;
 
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -74,23 +54,23 @@
   --reader-line-height: 1.8;
 }
 
-/* Make sure the global page uses the theme tokens */
-html,
-body {
+html, body {
   background: var(--bg-primary);
   color: var(--text-primary);
   font-family: var(--font-body);
 }
 
-/* Dark Mode */
+/* ========================= DARK MODE ========================= */
 [data-theme="dark"] {
-  --bg-primary: var(--color-dark-bg);
-  --bg-secondary: var(--color-card-dark);
-  --text-primary: var(--color-text-light);
-  --text-secondary: var(--color-text-muted-light);
+  --bg-primary: #0F0F0F;
+  --bg-secondary: rgba(255, 255, 255, 0.08);
+  --text-primary: #FFFFFF;
+  --text-secondary: #AAAAAA;
+  --color-purple: #9B7CFF;
+  --color-pink: #FF64D8;
 }
 
-/* Light Mode */
+/* ========================= LIGHT MODE ========================= */
 [data-theme="light"] {
   --bg-primary: #FDE7F6;
   --bg-secondary: rgba(255, 255, 255, 0.55);
@@ -99,93 +79,6 @@ body {
 }
 
 /* Reader font size preferences */
-.font-size-small {
-  --reader-font-size: 14px;
-  --reader-line-height: 1.6;
-}
-
-.font-size-medium {
-  --reader-font-size: 16px;
-  --reader-line-height: 1.8;
-}
-
-.font-size-large {
-  --reader-font-size: 18px;
-  --reader-line-height: 2.0;
-}
-/* =========================
-   Dark Mode – Legibility Fix
-   (keeps everything working, only improves contrast)
-   ========================= */
-[data-theme="dark"] {
-  /* Your app tokens (already exist, but we refine for readability) */
-  --bg-primary: #0B0B12;
-  /* slightly bluish black = better reading */
-  --bg-secondary: rgba(255, 255, 255, 0.06);
-  /* translucent card */
-  --text-primary: rgba(255, 255, 255, 0.92);
-  --text-secondary: rgba(255, 255, 255, 0.72);
-
-  /* Optional: keep brand colours vivid on dark */
-  --color-purple: #9B7CFF;
-  /* brighter purple for dark */
-  --color-pink: #FF64D8;
-  /* slightly brighter */
-  --color-neon-green: #A6FF4D;
-
-  /* SHADCN / Tailwind tokens (HSL) — THIS is what fixes “washed / unreadable” UI */
-  --background: 240 12% 6%;
-  /* page background */
-  --foreground: 0 0% 96%;
-  /* default text */
-
-  --card: 240 10% 10%;
-  /* card surface */
-  --card-foreground: 0 0% 96%;
-
-  --popover: 240 10% 10%;
-  --popover-foreground: 0 0% 96%;
-
-  --primary: 266 97% 72%;
-  /* brighter purple */
-  --primary-foreground: 240 12% 8%;
-  /* text on purple buttons */
-
-  --secondary: 328 100% 70%;
-  /* brighter pink */
-  --secondary-foreground: 240 12% 8%;
-
-  --muted: 240 10% 14%;
-  /* muted surfaces */
-  --muted-foreground: 0 0% 72%;
-  /* readable muted text */
-
-  --accent: 84 100% 60%;
-  --accent-foreground: 240 12% 8%;
-
-  --destructive: 0 84% 64%;
-  --destructive-foreground: 0 0% 96%;
-
-  --border: 0 0% 100% / 0.12;
-  /* subtle borders on dark */
-  --input: 0 0% 100% / 0.14;
-  --ring: 266 97% 70%;
-
-  /* Reader prose fix (headings/links/strong become readable) */
-  --tw-prose-body: rgba(255, 255, 255, 0.88);
-  --tw-prose-headings: rgba(255, 255, 255, 0.95);
-  --tw-prose-links: #A6FF4D;
-  /* neon green links */
-  --tw-prose-bold: rgba(255, 255, 255, 0.95);
-  --tw-prose-counters: rgba(255, 255, 255, 0.65);
-  --tw-prose-bullets: rgba(255, 255, 255, 0.45);
-  --tw-prose-hr: rgba(255, 255, 255, 0.14);
-  --tw-prose-quotes: rgba(255, 255, 255, 0.88);
-  --tw-prose-quote-borders: rgba(255, 255, 255, 0.18);
-  --tw-prose-captions: rgba(255, 255, 255, 0.70);
-  --tw-prose-code: rgba(255, 255, 255, 0.92);
-  --tw-prose-pre-code: rgba(255, 255, 255, 0.92);
-  --tw-prose-pre-bg: rgba(255, 255, 255, 0.08);
-  --tw-prose-th-borders: rgba(255, 255, 255, 0.18);
-  --tw-prose-td-borders: rgba(255, 255, 255, 0.12);
-}
+.font-size-small { --reader-font-size: 14px; --reader-line-height: 1.6; }
+.font-size-medium { --reader-font-size: 16px; --reader-line-height: 1.8; }
+.font-size-large { --reader-font-size: 18px; --reader-line-height: 2.0; }
