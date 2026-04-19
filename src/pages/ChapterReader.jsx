@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Loader2, AlertCircle } from "lucide-react";
+import { ChevronLeft, ChevronRight, Loader2, AlertCircle, ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/SupabaseAuthContext";
 import { useReadingProgress } from "@/hooks/useReadingProgress";
@@ -85,6 +85,7 @@ const ChapterReader = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [initialScrollRestored, setInitialScrollRestored] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     async function loadChapter() {
@@ -198,6 +199,20 @@ console.log('sectionsData:', sectionsData);
       window.scrollTo(0, 0);
     }
   }, [currentChapter]);
+
+  // Botão "Scroll to Top" aparece após 300px de scroll
+useEffect(() => {
+  const handleScrollTopButton = () => {
+    setShowScrollTop(window.scrollY > 300);
+  };
+
+  window.addEventListener("scroll", handleScrollTopButton, { passive: true });
+  return () => window.removeEventListener("scroll", handleScrollTopButton);
+}, []);
+
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
 
   if (loading) {
     return (
@@ -338,6 +353,20 @@ console.log('sectionsData:', sectionsData);
           </div>
         </div>
       </div>
+      {/* Botão Scroll to Top */}
+          {showScrollTop && (
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.2 }}
+              onClick={scrollToTop}
+              className="fixed bottom-8 right-8 z-50 bg-[var(--color-purple)] hover:bg-[var(--color-purple)]/90 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all"
+              aria-label="Scroll to top"
+            >
+              <ArrowUp className="h-6 w-6" />
+            </motion.button>
+          )}
     </>
   );
 };
