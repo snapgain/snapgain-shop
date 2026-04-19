@@ -476,3 +476,676 @@
 [data-theme="dark"] .sg-donut p {
   color: #d1d5db;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   SISTEMA SG4 — Para Capítulos 2, 3, 4, 5, etc.
+   ═══════════════════════════════════════════════════════════════ */
+
+.sg4 {
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.7;
+  color: #1a1a1a;
+}
+
+/* ══════════ COVER & BANNERS ══════════ */
+.sg4-cover-img {
+  width: 100%;
+  max-width: 900px;
+  height: 280px;
+  background: linear-gradient(135deg, #6b8bb5 0%, #8aaccc 60%, #b0c8d8 100%);
+  border-radius: 16px;
+  margin: 2rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.sg4-banner {
+  width: 100%;
+  height: 120px;
+  border-radius: 16px;
+  margin: 2rem 0;
+  background: linear-gradient(135deg, #d9a93a 0%, #c89030 100%);
+}
+
+.sg4-banner-gold {
+  background: linear-gradient(135deg, #d9a93a 0%, #e8d090 50%, #f0e0a0 100%);
+}
+
+/* ══════════ GRIDS ══════════ */
+.sg4-g2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.sg4-g3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.sg4-g4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+/* ══════════ CHEVRON CARDS ══════════ */
+.sg4-chevron-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.sg4-chevron-card {
+  background: #ffffff;
+  border: 2px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.sg4-chevron-icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.sg4-chevron-card h4 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  color: #1a1a1a;
+}
+
+.sg4-chevron-card p {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin: 0;
+  color: #4a4a4a;
+}
+
+/* ══════════ ICON CARDS ══════════ */
+.sg4-iconcard {
+  background: #fafafa;
+  border: 2px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.sg4-icon-top {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.sg4-iconcard h4 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  color: #1a1a1a;
+}
+
+.sg4-iconcard p {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin: 0;
+  color: #4a4a4a;
+}
+
+/* ══════════ TIP BOXES ══════════ */
+.sg4-tip {
+  background: #fff8e6;
+  border-left: 4px solid #d9a93a;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.sg4-tip-icon {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #d9a93a;
+  border-radius: 4px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #d9a93a;
+}
+
+/* ══════════ NUMBERED CARDS ══════════ */
+.sg4-numcard {
+  background: #ffffff;
+  border: 2px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.sg4-circle {
+  width: 48px;
+  height: 48px;
+  background: #d9a93a;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.sg4-numcard h4 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  color: #1a1a1a;
+}
+
+.sg4-numcard p {
+  margin: 0.5rem 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* ══════════ WIDE CARD ══════════ */
+.sg4-wide {
+  background: #ffffff;
+  border: 2px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+/* ══════════ STEPS ══════════ */
+.sg4-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.sg4-step {
+  background: #ffffff;
+  border: 2px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.sg4-step-n {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #6b6b6b;
+  flex-shrink: 0;
+}
+
+.sg4-step h4 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  color: #1a1a1a;
+}
+
+.sg4-step p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* ══════════ DOT LIST ══════════ */
+.sg4-dotlist {
+  list-style: none;
+  padding-left: 0;
+  margin: 1.5rem 0;
+}
+
+.sg4-dotlist li {
+  padding-left: 1.5rem;
+  position: relative;
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.sg4-dotlist li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #d9a93a;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+/* ══════════ LINKS ══════════ */
+.sg4-green {
+  color: #22c55e !important;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.sg4-green:hover {
+  color: #16a34a !important;
+}
+
+.sg4-gold {
+  color: #d9a93a !important;
+  font-weight: 600;
+}
+
+.sg4-gold:hover {
+  color: #c89030 !important;
+}
+
+/* ══════════ BLOCKQUOTE ══════════ */
+.sg4-blockq {
+  background: #f0f7ff;
+  border-left: 4px solid #6366f1;
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+  font-style: italic;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+/* ══════════ QUOTES GRID ══════════ */
+.sg4-quotes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.sg4-quote {
+  background: #fef9f3;
+  border: 2px solid #f0e6d8;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.sg4-quote h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  color: #d9a93a;
+}
+
+.sg4-quote p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* ══════════ CARDS ══════════ */
+.sg4-card {
+  background: #fafafa;
+  border: 2px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.sg4-card h3, .sg4-card h4 {
+  margin-top: 0;
+  color: #1a1a1a;
+}
+
+.sg4-card ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.sg4-card li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.sg4-dark {
+  background: #1a1a1a;
+  color: #ffffff;
+  border-color: #333333;
+}
+
+.sg4-dark h4 {
+  color: #ffffff;
+}
+
+/* ══════════ TABLES ══════════ */
+.sg4-twrap {
+  overflow-x: auto;
+  margin: 2rem 0;
+}
+
+.sg4-t {
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid #e8e8e8;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.sg4-t thead {
+  background: #f5f5f5;
+}
+
+.sg4-t th, .sg4-t td {
+  border: 1px solid #e8e8e8;
+  padding: 0.875rem 1rem;
+  text-align: left;
+}
+
+.sg4-t th {
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+/* ══════════ WARNINGS ══════════ */
+.sg4-warn {
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.sg4-warn strong {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* ══════════ TIPS GRID ══════════ */
+.sg4-tips4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.sg4-tip4 {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.sg4-tip4-dot {
+  width: 12px;
+  height: 12px;
+  background: #d9a93a;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+}
+
+.sg4-tip4 h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  color: #1a1a1a;
+}
+
+.sg4-tip4 p {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* ══════════ ICON ROWS ══════════ */
+.sg4-icon-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.sg4-icon-box {
+  width: 48px;
+  height: 48px;
+  background: #d9a93a;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.sg4-icon-row h4 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  color: #1a1a1a;
+}
+
+.sg4-icon-row p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* ══════════ TIMELINE ══════════ */
+.sg4-tline {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem 0;
+  padding: 2rem 0;
+  border-left: 3px solid #d9a93a;
+  padding-left: 2rem;
+}
+
+.sg4-tline-item {
+  flex: 1;
+  position: relative;
+}
+
+.sg4-tline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.75rem;
+  top: 0.5rem;
+  width: 16px;
+  height: 16px;
+  background: #d9a93a;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+}
+
+.sg4-tline-item h4 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  color: #1a1a1a;
+}
+
+.sg4-tline-item p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* ══════════ FORMULA ══════════ */
+.sg4-formula {
+  background: #1a1a1a;
+  color: #d9a93a;
+  font-family: 'Courier New', monospace;
+  font-size: 1.125rem;
+  font-weight: 700;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+/* ══════════ NUMBERED LIST ══════════ */
+.sg4-numlist {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.sg4-numitem {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.sg4-numball {
+  width: 40px;
+  height: 40px;
+  background: #d9a93a;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.sg4-numitem h4 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  color: #1a1a1a;
+}
+
+.sg4-numitem p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* ══════════ INFO BOX ══════════ */
+.sg4-info {
+  background: #e0f2fe;
+  border-left: 4px solid #0ea5e9;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+/* ══════════ STATS DISPLAY ══════════ */
+.sg4-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.sg4-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sg4-snum {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #1a1a1a;
+  line-height: 1;
+}
+
+.sg4-slbl {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.4;
+}
+
+.sg4-slbl small {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #6b6b6b;
+  display: block;
+  margin-top: 0.25rem;
+}
+
+/* ══════════ RESPONSIVE ══════════ */
+@media (max-width: 768px) {
+  .sg4-g2, .sg4-g3, .sg4-g4,
+  .sg4-chevron-row, .sg4-quotes,
+  .sg4-tips4, .sg4-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .sg4-tline {
+    flex-direction: column;
+  }
+  
+  .sg4-snum {
+    font-size: 2.5rem;
+  }
+}
+
+/* ══════════ DARK MODE ══════════ */
+[data-theme="dark"] .sg4 {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .sg4 h1,
+[data-theme="dark"] .sg4 h2,
+[data-theme="dark"] .sg4 h3,
+[data-theme="dark"] .sg4 h4 {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .sg4-chevron-card,
+[data-theme="dark"] .sg4-iconcard,
+[data-theme="dark"] .sg4-numcard,
+[data-theme="dark"] .sg4-step,
+[data-theme="dark"] .sg4-wide,
+[data-theme="dark"] .sg4-card,
+[data-theme="dark"] .sg4-quote {
+  background: rgba(30, 41, 59, 0.5);
+  border-color: rgba(100, 116, 139, 0.3);
+}
+
+[data-theme="dark"] .sg4-tip,
+[data-theme="dark"] .sg4-warn,
+[data-theme="dark"] .sg4-info {
+  background: rgba(51, 65, 85, 0.8);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .sg4-blockq {
+  background: rgba(99, 102, 241, 0.15);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .sg4-t {
+  border-color: rgba(100, 116, 139, 0.3);
+}
+
+[data-theme="dark"] .sg4-t th,
+[data-theme="dark"] .sg4-t td {
+  border-color: rgba(100, 116, 139, 0.3);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .sg4-t thead {
+  background: rgba(30, 41, 59, 0.7);
+}
