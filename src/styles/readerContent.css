@@ -156,10 +156,11 @@
 }
 
 /* ══════════════════════════════════════ 
-   FIX: Apenas o título "Table of Contents" 
+   FIX: Título "Table of Contents" no dark mode
+   (sobrescreve text-gray-900 do Tailwind)
    ══════════════════════════════════════ */
 
-[data-theme="dark"] h1 {
-color: #FFFFFF !important;
-  
+[data-theme="dark"] h2.text-gray-900,
+[data-theme="dark"] .text-gray-900 {
+  color: #FFFFFF !important;
 }
