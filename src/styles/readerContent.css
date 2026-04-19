@@ -185,3 +185,24 @@
 [data-theme="dark"] .text-gray-500 {
   color: #9CA3AF !important;
 }
+
+/* ══════════════════════════════════════ 
+   FIX: Box "In this chapter" no dark mode
+   ══════════════════════════════════════ */
+
+[data-theme="dark"] .bg-white\/70 {
+  background-color: rgba(26, 26, 26, 0.85) !important;
+  border-color: rgba(100, 116, 139, 0.3) !important;
+}
+
+[data-theme="dark"] .bg-white\/70 h3 {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .bg-white\/70 a {
+  color: #C4B5FD !important;
+}
+
+[data-theme="dark"] .bg-white\/70 a:hover {
+  color: #FFFFFF !important;
+}
