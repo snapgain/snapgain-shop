@@ -1,16 +1,52 @@
 {
-  "cleanUrls": true,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "installCommand": "npm install --strict-ssl=false",
   "rewrites": [
-    { "source": "/read", "destination": "/reader.html" },
-    { "source": "/success", "destination": "/success.html" },
-    { "source": "/", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "redirects": [
+    {
+      "_comment": "2026-05-20: shop is marketing-only — anyone hitting the old app routes gets 301'd to snapgain.uk where the actual app lives.",
+      "source": "/calculator",
+      "destination": "https://snapgain.uk/calculator",
+      "permanent": true
+    },
+    {
+      "source": "/library",
+      "destination": "https://snapgain.uk/library",
+      "permanent": true
+    },
+    {
+      "source": "/login",
+      "destination": "https://snapgain.uk/auth/login",
+      "permanent": true
+    },
+    {
+      "source": "/account",
+      "destination": "https://snapgain.uk/account",
+      "permanent": true
+    },
+    {
+      "source": "/reader/(.*)",
+      "destination": "https://snapgain.uk/library",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
+        { "key": "X-Frame-Options", "value": "DENY" },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" }
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    },
+    {
+      "source": "/sw.js",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
       ]
     }
   ]

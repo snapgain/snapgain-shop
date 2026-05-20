@@ -43,9 +43,10 @@ export default function EbookLoginPage() {
   }, [isSetPassword, isResetPassword]);
 
   const subtitle = useMemo(() => {
+    // 2026-05-20: copy updated for calculator-only repo. Was: "...e-book library."
     if (isSetPassword) return "Set a strong password to access your purchase.";
-    if (isResetPassword) return "Choose a new password to access your library.";
-    return "Sign in to access your e-book library.";
+    if (isResetPassword) return "Choose a new password to access your account.";
+    return "Sign in to access your Premium Calculator.";
   }, [isSetPassword, isResetPassword]);
 
   const [email, setEmail] = useState("");
@@ -113,7 +114,7 @@ export default function EbookLoginPage() {
 
   // If user already logged in, go to library (except set/reset password flows)
   useEffect(() => {
-    if (user && !isSetPassword && !isResetPassword) navigate("/library");
+    if (user && !isSetPassword && !isResetPassword) navigate("/calculator"); // 2026-05-20: was /library — repo is calculator-only now
   }, [user, isSetPassword, isResetPassword, navigate]);
 
   const handleLoginWithPassword = async (e) => {
@@ -127,7 +128,7 @@ export default function EbookLoginPage() {
       if (error) throw error;
 
       toast({ title: "Logged in ✅", description: "Welcome back!" });
-      navigate("/library");
+      navigate("/calculator"); // 2026-05-20: was /library — repo is calculator-only now
     } catch (err) {
       toast({
         variant: "destructive",
@@ -181,7 +182,7 @@ export default function EbookLoginPage() {
         title: isResetPassword ? "Password reset ✅" : "Password set ✅",
         description: "Access unlocked!",
       });
-      navigate("/library");
+      navigate("/calculator"); // 2026-05-20: was /library — repo is calculator-only now
     } catch (err) {
       toast({
         variant: "destructive",
