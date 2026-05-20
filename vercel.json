@@ -1,14 +1,10 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "framework": "vite",
-  "installCommand": "npm install --strict-ssl=false",
+  "cleanUrls": true,
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/((?!.*\\.).*)", "destination": "/index.html" }
   ],
   "redirects": [
     {
-      "_comment": "2026-05-20: shop is marketing-only — anyone hitting the old app routes gets 301'd to snapgain.uk where the actual app lives.",
       "source": "/calculator",
       "destination": "https://snapgain.uk/calculator",
       "permanent": true
