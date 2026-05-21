@@ -13,7 +13,7 @@
 
 import React, { useState, useMemo } from "react";
 import { Helmet } from "react-helmet";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -26,7 +26,34 @@ import {
   BadgePoundSterling,
   ArrowRight,
   ExternalLink,
+  Mail,
+  Loader2,
 } from "lucide-react";
+import { createClient } from "@supabase/supabase-js";
+
+// 2026-05-20: lead-capture supabase client. Uses publishable anon key
+// (insert-only on email_signups, no other table access). Same project
+// as the main app so we can join captures to signups later.
+const SUPABASE_URL = "https://ffowgyjdbgkphsflxybk.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_fG0AhiV3dznAp7DcHm5jPA_jepTG5-W";
+const leadCaptureClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// Read UTM params from the current URL once so each capture is
+// attributed to the campaign that drove this visit.
+function readUtms() {
+  try {
+    const u = new URL(window.location.href);
+    return {
+      utm_source: u.searchParams.get("utm_source"),
+      utm_medium: u.searchParams.get("utm_medium"),
+      utm_campaign: u.searchParams.get("utm_campaign"),
+      utm_content: u.searchParams.get("utm_content"),
+      ref: u.searchParams.get("ref"),
+    };
+  } catch {
+    return {};
+  }
+}
 
 const MAIN_APP_URL = "https://snapgain.uk";
 const MAIN_APP_SIGNUP = `${MAIN_APP_URL}/auth/signup`;
@@ -41,6 +68,41 @@ function MiniCalc() {
   const [cb, setCb] = useState("");
   const [av, setAv] = useState("");
   const [amt, setAmt] = useState("");
+  // Email capture state: 'idle' before result, 'open' once they computed
+  // a real result, 'submitting' / 'done' / 'error' through the form.
+  const [email, setEmail] = useState("");
+  const [captureState, setCaptureState] = useState("idle");
+
+  const handleEmailSubmit = async (e) => {
+    e.preventDefault();
+    if (!email || !email.includes("@")) {
+      setCaptureState("error");
+      return;
+    }
+    setCaptureState("submitting");
+    try {
+      const utms = readUtms();
+      const { error } = await leadCaptureClient.from("email_signups").insert({
+        email: email.trim().toLowerCase(),
+        source: "snapgain-shop-calc",
+        ...utms,
+        metadata: {
+          calc_result: {
+            cashback_pct: parseFloat(cb) || null,
+            avios_per_pound: parseFloat(av) || null,
+            amount: parseFloat(amt) || null,
+            winner: result?.winner,
+          },
+          referrer: document.referrer || null,
+        },
+      });
+      if (error) throw error;
+      setCaptureState("done");
+    } catch (err) {
+      console.warn("[lead capture] failed:", err.message);
+      setCaptureState("error");
+    }
+  };
 
   const result = useMemo(() => {
     const cbN = parseFloat(cb) || 0;
@@ -163,6 +225,115 @@ function MiniCalc() {
           Drop in real numbers above to see the winner.
         </div>
       )}
+
+      {/* 2026-05-20: lead capture appears AFTER a real calc result.
+          Drives free-trial drip on snapgain.uk Premium. */}
+      <AnimatePresence>
+        {result && captureState !== "done" && (
+          <motion.form
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            onSubmit={handleEmailSubmit}
+            className="mt-4 p-4 rounded-lg"
+            style={{
+              background: "rgba(125,77,251,0.06)",
+              border: "1px solid rgba(125,77,251,0.18)",
+            }}
+          >
+            <div className="flex items-start gap-2 mb-2">
+              <Mail
+                className="h-4 w-4 mt-0.5 flex-shrink-0"
+                style={{ color: "var(--color-purple)" }}
+              />
+              <div>
+                <p
+                  className="text-sm font-semibold"
+                  style={{ color: "var(--text-primary)" }}
+                >
+                  Want a stack like this every week?
+                </p>
+                <p
+                  className="text-xs"
+                  style={{ color: "var(--text-secondary)" }}
+                >
+                  Weekly cashback + Avios tips from Bárbara. No spam.
+                  Unsubscribe in 1 click.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2 mt-3">
+              <Input
+                type="email"
+                placeholder="your@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={captureState === "submitting"}
+                className="flex-1"
+              />
+              <Button
+                type="submit"
+                disabled={captureState === "submitting"}
+                className="text-white font-bold whitespace-nowrap"
+                style={{ backgroundImage: "var(--gradient-header)" }}
+              >
+                {captureState === "submitting" ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                    Adding…
+                  </>
+                ) : (
+                  <>Get weekly tips</>
+                )}
+              </Button>
+            </div>
+            {captureState === "error" && (
+              <p className="text-xs text-red-600 mt-2">
+                Hmm, didn't go through. Try again or just email
+                barbara@snapgain.uk directly.
+              </p>
+            )}
+          </motion.form>
+        )}
+        {captureState === "done" && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="mt-4 p-4 rounded-lg text-center"
+            style={{
+              background: "rgba(153,255,51,0.15)",
+              border: "1px solid rgba(153,255,51,0.4)",
+            }}
+          >
+            <CheckCircle
+              className="h-6 w-6 mx-auto mb-2"
+              style={{ color: "var(--color-neon-green)" }}
+            />
+            <p
+              className="text-sm font-semibold"
+              style={{ color: "var(--text-primary)" }}
+            >
+              You're in! First email lands tomorrow.
+            </p>
+            <p
+              className="text-xs mt-1"
+              style={{ color: "var(--text-secondary)" }}
+            >
+              Want everything now? Start the 7-day trial of Premium:
+            </p>
+            <a
+              href="https://snapgain.uk/auth/signup?utm_source=shop&utm_medium=organic&utm_campaign=voo-de-volta&utm_content=post-calc-capture"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-2 text-sm font-bold underline"
+              style={{ color: "var(--color-purple)" }}
+            >
+              snapgain.uk → free trial →
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <p
         className="text-xs text-center mt-4"
